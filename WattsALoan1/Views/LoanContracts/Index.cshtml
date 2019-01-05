@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WattsALoan3.Models.LoanContract>
+
+@{
+    ViewBag.Title = "Loans Contracts";
+}
+
+<h2 class="bold creme common-font text-center">Loans Contracts</h2>
+
+<table class="table common-font">
+    <tr>
+        <th class="text-center">@Html.DisplayNameFor(model => model.LoanContractID)</th>
+        <th class="text-center">Processed By</th>
+        <th class="text-center">@Html.DisplayNameFor(model => model.LoanNumber)</th>
+        <th class="text-center">@Html.DisplayNameFor(model => model.DateAllocated)</th>
+        <th>@Html.DisplayNameFor(model => model.CustomerFirstName)</th>
+        <th>@Html.DisplayNameFor(model => model.CustomerLastName)</th>
+        <th>@Html.DisplayNameFor(model => model.LoanType)</th>
+        <th>@Html.DisplayNameFor(model => model.LoanAmount)</th>
+        <th>@Html.DisplayNameFor(model => model.InterestRate)</th>
+        <th>@Html.DisplayNameFor(model => model.Periods)</th>
+        <th>@Html.DisplayNameFor(model => model.MonthlyPayment)</th>
+        <th>@Html.DisplayNameFor(model => model.FutureValue)</th>
+        <th>@Html.DisplayNameFor(model => model.InterestAmount)</th>
+        <th class="text-center">@Html.DisplayNameFor(model => model.PaymentStartDate)</th>
+        <th>@Html.ActionLink("Create Loan Contract", "Create", null, htmlAttributes: new { @class = "wal-lead" })</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string strDateAllocated = DateTime.Parse(item.DateAllocated.ToString()).ToShortDateString();
+        string strPaymentStartDate = DateTime.Parse(item.PaymentStartDate.ToString()).ToShortDateString();
+
+        <tr>
+            <td class="text-center">@Html.DisplayFor(modelItem => item.LoanContractID)</td>
+            <td>@Html.DisplayFor(modelItem => item.Employee.Identification)</td>
+            <td class="text-center">@Html.DisplayFor(modelItem => item.LoanNumber)</td>
+            <td class="text-center">@strDateAllocated</td>
+            <td>@Html.DisplayFor(modelItem => item.CustomerFirstName)</td>
+            <td>@Html.DisplayFor(modelItem => item.CustomerLastName)</td>
+            <td>@Html.DisplayFor(modelItem => item.LoanType)</td>
+            <td>@Html.DisplayFor(modelItem => item.LoanAmount)</td>
+            <td>@Html.DisplayFor(modelItem => item.InterestRate)</td>
+            <td>@Html.DisplayFor(modelItem => item.Periods)</td>
+            <td>@Html.DisplayFor(modelItem => item.MonthlyPayment)</td>
+            <td>@Html.DisplayFor(modelItem => item.FutureValue)</td>
+            <td>@Html.DisplayFor(modelItem => item.InterestAmount)</td>
+            <td class="text-center">@strPaymentStartDate</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.LoanContractID }, htmlAttributes: new { @class = "wal-lead" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.LoanContractID }, htmlAttributes: new { @class = "wal-lead" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.LoanContractID }, htmlAttributes: new { @class = "wal-lead" })
+            </td>
+        </tr>
+    }
+</table>
